@@ -1,0 +1,108 @@
+<div class="modal" [ngClass]="isOpen ? 'open-modal' : '' " tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Hotel Data</h5>
+      </div>
+      <div class="modal-body">
+
+
+        <form>
+          <div class="form-group">
+            <label>Hotel</label>
+            <input type="text" [(ngModel)]="hotel" [ngModelOptions]="{standalone: true}" class="form-control" id="hotel"
+              placeholder="Enter Hotel Name">
+
+          </div>
+
+          <div class="form-group">
+            <label>Arrival</label>
+            <input type="text" [(ngModel)]="arrival" [ngModelOptions]="{standalone: true}" class="form-control"
+              id="arrival" placeholder="Enter arrival Date(yyyy-mm-dd)">
+
+          </div>
+
+          <div class="form-group">
+            <label>Departure</label>
+            <input type="text" [(ngModel)]="departure" [ngModelOptions]="{standalone: true}" class="form-control"
+              id="departure" placeholder=" Enter arrival Date(yyyy-mm-dd)">
+
+          </div>
+
+          <div class="form-group">
+            <label>Type</label>
+            <input type="text" [(ngModel)]="type" [ngModelOptions]="{standalone: true}" class="form-control" id="type"
+              placeholder="What Type">
+
+          </div>
+          <div class="form-group">
+            <label>guests</label>
+            <input type="text" [(ngModel)]="guests" [ngModelOptions]="{standalone: true}" class="form-control"
+              id="guests" placeholder="guests">
+
+          </div>
+          <div class="form-group">
+            <label>price</label>
+            <input type="text" [(ngModel)]="price" [ngModelOptions]="{standalone: true}" class="form-control" id="price"
+              placeholder=" price">
+
+          </div>
+
+
+          <button type="submit" class="btn btn-primary mt-4" (click)="save()">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container mt-4">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <h1 *ngIf="!isResultLoaded">Loading..</h1>
+        <th colspan="7">
+
+          <h1>Your Reservations</h1>
+        </th>
+      </tr>
+
+      <tr>
+
+        <th scope="col">Hotel</th>
+        <th scope="col">Arrival</th>
+        <th scope="col">Departure</th>
+        <th scope="col">Type</th>
+        <th scope="col">Guest</th>
+        <th scope="col">Price</th>
+        <th scope="col">Manage</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let HotelItem of HotelArray; let i = index">
+
+        <td>{{HotelItem.hotel}}</td>
+        <td>{{HotelItem.arrival }}</td>
+        <td>{{HotelItem.departure }}</td>
+        <td>{{HotelItem.type }}</td>
+        <td>{{HotelItem.guests }}</td>
+        <td>$ {{HotelItem.price }}</td>
+        <td>
+          <button type="button" class="btn btn-success" (click)="setUpdate(HotelItem)">Edit</button>
+
+
+        </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+
+</div>
